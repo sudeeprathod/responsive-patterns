@@ -1,0 +1,118 @@
+<html>
+<head>
+ <meta charset="utf-8">
+
+ <meta name="viewport" content="width= device-width, initial-scale=1.0">
+ <style>
+ body {
+  overflow-x: hidden;
+}
+
+.my-container {
+  display: block;
+  color:#FFFFFF;
+  font-size: 6vmin;
+  text-align: center;
+}
+
+.container-item  {
+  position: absolute;
+  width: 250px;
+  height: 100%;
+
+  /*
+    This is a trick to improve performance on newer versions of Chrome
+    #perfmatters
+  */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; 
+
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+
+  z-index: 1;
+}
+
+.c1 {
+  /*
+  Using translate3d as a trick to improve performance on older versions of Chrome
+  See: http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/
+  #perfmatters
+  */
+  -webkit-transform: translate(-250px,0);
+  transform: translate(-250px,0);
+}
+
+.c2 {
+  width: 100%;
+  position: absolute;
+}
+
+.c3 {
+  left: 100%;
+}
+
+.c1.open {
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
+}
+
+.c3.open {
+  -webkit-transform: translate(-250px,0);
+  transform: translate(-250px,0);
+}
+
+.c1 {
+background-color: #000000;
+}
+.c2{
+background-color:#FF0000;
+}
+.c3{
+  background-color:#0000FF;
+}
+@media (min-width: 500px) {
+  /* If the screen is wider then 500px, use Flexbox */
+  .container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+  }
+  .c1 {
+    position: relative;
+    -webkit-transition: none 0s ease-out;
+    transition: none 0s ease-out;
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  .c2 {
+    position: static;
+  }
+}
+
+@media (min-width: 800px) {
+  body {
+    overflow-x: auto;
+  }
+  .c3 {
+    position: relative;
+    left: auto;
+    -webkit-transition: none 0s ease-out;
+    transition: none 0s ease-out;
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+ </style>
+  </head>
+ 	<body>
+ 		<div class="my-container">
+ 	       <div class="container-item c1">black</div>
+ 	       <div class="container-item c2">red</div>
+ 	       <div class="container-item c3">blue</div>
+        </div>
+
+ 
+    </body>
+    </html>
